@@ -2,12 +2,12 @@
 import { useState, useEffect } from "react"
 import { useParams } from "next/navigation"
 
-// Define a type for reviews
+
 interface Review {
   name: string
   rating: number
   comment: string
-  id?: string // optional if your backend provides an ID
+  id?: string 
 }
 
 export default function ProductDetail() {
