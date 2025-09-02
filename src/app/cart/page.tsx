@@ -19,7 +19,8 @@ export default function CartPage() {
 
   useEffect(() => {
     const saved = localStorage.getItem("cart")
-    if (saved) setCart(JSON.parse(saved))
+    if (saved) setCart(JSON.parse(saved) as CartItem[])
+
   }, [])
 
   const total = cart.reduce((sum, item) => sum + item.price, 0)
