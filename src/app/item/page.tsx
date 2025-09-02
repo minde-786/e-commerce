@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 // Define a Product type
 interface Product {
@@ -41,7 +42,7 @@ export default function Home() {
               <p>{p.description}</p>
               <p>Rs. {p.price}</p>
               {p.imageUrl && (
-                <img src={p.imageUrl} alt={p.title} className="w-100 rounded items-center mx-4 h-32 object-cover" />
+                <Image src={p.imageUrl} alt={p.title} className="w-100 rounded items-center mx-4 h-32 object-cover" />
               )}
               <button
                 onClick={() => addToCart(p)}
