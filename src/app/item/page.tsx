@@ -2,26 +2,34 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 
+// Define a Product type
+interface Product {
+  _id: string
+  title: string
+  description?: string
+  price: number
+  imageUrl?: string
+}
+
 export default function Home() {
-  const [products, setProducts] = useState<any[]>([])
-  const [cart, setCart] = useState<any[]>([])
+  const [products, setProducts] = useState<Product[]>([])
+  const [cart, setCart] = useState<Product[]>([])
 
   useEffect(() => {
     fetch("/api/products")
       .then(res => res.json())
-      .then(data => setProducts(data))
+      .then((data: Product[]) => setProducts(data))
   }, [])
 
-  const addToCart = (p: any) => {
+  const addToCart = (p: Product) => {
     const newCart = [...cart, p]
     setCart(newCart)
-    localStorage.setItem("cart", JSON.stringify(newCart)) 
-  }  
+    localStorage.setItem("cart", JSON.stringify(newCart))
+  }
 
   return (
     <div className="p-6 text-amber-50 ">
       <h1 className="text-2xl font-bold mb-4 px-4 shadow-2xl">Foodiya</h1>
-      
 
       <div className="grid grid-cols-2 gap-8 mt-6 bg-slate-900 m-2 shadow-2xl p-4 rounded border border-slate-950 ">
         {products.length === 0 ? (
@@ -44,15 +52,15 @@ export default function Home() {
               <Link href={`/product/${p._id}`} className="lg:ml-14 text-blue-600 underline mt-4">
                 View
               </Link>
-              
             </div>
           ))
         )}
       </div>
       <div className="mt-8 text-center py-4">
-      <Link href="/cart" className="bg-blue-500 text-white px-3 py-2 rounded">
-        Cart ({cart.length})
-      </Link></div>
+        <Link href="/cart" className="bg-blue-500 text-white px-3 py-2 rounded">
+          Cart ({cart.length})
+        </Link>
+      </div>
     </div>
   )
 }

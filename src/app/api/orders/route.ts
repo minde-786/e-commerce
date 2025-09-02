@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     customerName: data.name,
     customerEmail: data.email,
     total: data.total,
-    items: data.items.map((item: any) => ({
+    items: data.items.map((item: { id: any }) => ({
       _type: "reference",
       _ref: item.id
     }))

@@ -1,8 +1,17 @@
 "use client"
 import { useState, useEffect } from "react"
 
+// Define a type for a product/cart item
+interface CartItem {
+  _id: string
+  title: string
+  price: number
+  description?: string
+  imageUrl?: string
+}
+
 export default function CartPage() {
-  const [cart, setCart] = useState<any[]>([])
+  const [cart, setCart] = useState<CartItem[]>([])
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
@@ -49,17 +58,15 @@ export default function CartPage() {
         <p className="text-gray-500 text-center">Your cart is empty.</p>
       ) : (
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
-          {/* Cart Items */}
           <ul className="flex-1 border rounded p-4 bg-white shadow-md space-y-3 max-h-[60vh] overflow-y-auto lg:mt-20">
-            {cart.map((item, i) => (
-              <li key={i} className="flex justify-between border-b pb-2 ">
+            {cart.map((item) => (
+              <li key={item._id} className="flex justify-between border-b pb-2 ">
                 <span>{item.title}</span>
                 <span className="font-semibold">Rs {item.price}</span>
               </li>
             ))}
           </ul>
 
-          {/* Checkout Form */}
           <div className="flex-1 bg-white shadow-md rounded p-6">
             <p className="text-xl font-bold mb-4">Total: Rs {total}</p>
 

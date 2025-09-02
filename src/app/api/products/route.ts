@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server"
-import { client } from "./../../../sanity/lib/client"
+import { NextResponse } from "next/server";
+import { client } from "./../../../sanity/lib/client";
 
 export async function GET() {
   try {
@@ -9,10 +9,17 @@ export async function GET() {
       description,
       price,
       "imageUrl": image.asset->url
-    }`)
+    }`);
 
-    return NextResponse.json(products)
-  } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 })
+    return NextResponse.json(products);
+  } catch (err) {
+    let message = "Unknown error";
+
+    if (err instanceof Error) {
+      message = err.message;
+    }
+
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
+
