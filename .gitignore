@@ -1,3 +1,8 @@
+NEXT_PUBLIC_SANITY_PROJECT_ID=koy1migf
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=your_sanity_token_here
+
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies

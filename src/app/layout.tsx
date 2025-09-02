@@ -22,13 +22,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
+  return (<div className="bg-cover bg-center min-h-max"
+    style={{ backgroundImage: "url('/yaalimadad.jpg')" }}  >
     <html lang="en">
+      
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className= {`${geistSans.variable} ${geistMono.variable} antialiased ` } 
+      >  
         {children}
-      </body>
-    </html>
+      </body> 
+    </html></div>
   );
 }
